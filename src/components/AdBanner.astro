@@ -1,0 +1,38 @@
+---
+interface Props {
+  position?: 'top' | 'bottom' | 'sidebar';
+  size?: 'banner' | 'rectangle' | 'square';
+}
+
+const { position = 'top', size = 'banner' } = Astro.props;
+
+const adClasses = {
+  top: 'w-full h-20 bg-gray-700 rounded-lg',
+  bottom: 'w-full h-20 bg-gray-700 rounded-lg',
+  sidebar: 'w-full h-60 bg-gray-700 rounded-lg'
+};
+
+const adClass = adClasses[position];
+---
+
+<div class={`${adClass} flex items-center justify-center text-gray-500 text-sm`}>
+  <div class="text-center">
+    <div class="mb-1">📢 Advertisement</div>
+    <div class="text-xs text-gray-600">Google AdSense</div>
+  </div>
+</div>
+
+<!-- 
+  Google AdSense Code Template:
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+     crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+       data-ad-slot="YOUR_AD_SLOT"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+--> 

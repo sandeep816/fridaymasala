@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import MovieCard from '../components/MovieCard.astro';
+import { fetchTrendingMovies, fetchPopularMovies, fetchTopRatedMovies } from '../lib/tmdb';
+
+// Fetch data for homepage with error handling
+let trendingMovies: any[] = [];
+let popularMovies: any[] = [];
+let topRatedMovies: any[] = [];
+let usingFallbackData = false;
+
+try {
+  [trendingMovies, popularMovies, topRatedMovies] = await Promise.all([
+    fetchTrendingMovies(),
+    fetchPopularMovies(),
+    fetchTopRatedMovies()
+  ]);
+} catch (error) {
+  console.warn('Using fallback data due to API issues:', error);
+  usingFallbackData = true;
+  // Use sample data if all API calls fail
+  trendingMovies = popularMovies = topRatedMovies = [];
+}
+
+const featuredMovies = trendingMovies.slice(0, 6);
+---
+
+<Layout title="Friday Masala - Your Ultimate Movie Database">
+  {usingFallbackData && (
+    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <p class="text-sm">
+            <strong>Network Notice:</strong> Currently showing sample data due to API connectivity issues. 
+            The website will automatically update when the connection is restored.
+          </p>
+        </div>
+      </div>
+    </div>
+  )}
+  
+  <HeroSection featuredMovies={featuredMovies} />
+  
+  <!-- Popular Movies Section -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold text-gray-900">🔥 Popular Movies</h2>
+        <a href="/movies/popular" class="text-red-500 hover:text-red-600 font-semibold">
+          View All →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        {popularMovies.slice(0, 10).map((movie) => (
+          <MovieCard movie={movie} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Rated Movies Section -->
+  <section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold text-gray-900">⭐ Top Rated Movies</h2>
+        <a href="/movies/top-rated" class="text-red-500 hover:text-red-600 font-semibold">
+          View All →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        {topRatedMovies.slice(0, 10).map((movie) => (
+          <MovieCard movie={movie} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending Movies Section -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold text-gray-900">📈 Trending This Week</h2>
+        <a href="/movies/trending" class="text-red-500 hover:text-red-600 font-semibold">
+          View All →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        {trendingMovies.slice(0, 10).map((movie) => (
+          <MovieCard movie={movie} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">🎭 Movie Categories</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {[
+          { name: 'Action', icon: '💥', href: '/genre/action' },
+          { name: 'Comedy', icon: '😂', href: '/genre/comedy' },
+          { name: 'Drama', icon: '🎭', href: '/genre/drama' },
+          { name: 'Horror', icon: '👻', href: '/genre/horror' },
+          { name: 'Sci-Fi', icon: '🚀', href: '/genre/sci-fi' },
+          { name: 'Romance', icon: '💕', href: '/genre/romance' },
+          { name: 'Thriller', icon: '😱', href: '/genre/thriller' },
+          { name: 'Animation', icon: '🎨', href: '/genre/animation' },
+          { name: 'Documentary', icon: '📹', href: '/genre/documentary' },
+          { name: 'Family', icon: '👨‍👩‍👧‍👦', href: '/genre/family' },
+          { name: 'Fantasy', icon: '🧙‍♂️', href: '/genre/fantasy' },
+          { name: 'Mystery', icon: '🔍', href: '/genre/mystery' }
+        ].map((category) => (
+          <a 
+            href={category.href}
+            class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center group"
+          >
+            <div class="text-3xl mb-2">{category.icon}</div>
+            <div class="font-semibold text-gray-900 group-hover:text-red-500 transition-colors">
+              {category.name}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

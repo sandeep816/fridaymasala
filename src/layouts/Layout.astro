@@ -1,0 +1,66 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AdBanner from '../components/AdBanner.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description = "Your ultimate destination for movies, reviews, and entertainment. Discover the latest releases, explore classics, and stay updated with the world of cinema.", image = "/og-image.jpg" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <title>{title}</title>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-EXAMPLE"
+         crossorigin="anonymous"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+    <Header />
+    
+    <!-- Top Ad Banner -->
+    <div class="container mx-auto px-4 py-4">
+      <AdBanner position="top" />
+    </div>
+    
+    <!-- Main Content -->
+    <main>
+      <slot />
+    </main>
+    
+    <!-- Bottom Ad Banner -->
+    <div class="container mx-auto px-4 py-4">
+      <AdBanner position="bottom" />
+    </div>
+    
+    <Footer />
+  </body>
+</html> 

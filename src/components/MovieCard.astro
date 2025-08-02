@@ -1,0 +1,74 @@
+---
+import { getImageUrl } from '../lib/tmdb';
+import type { Movie } from '../lib/tmdb';
+
+interface Props {
+  movie: Movie;
+}
+
+const { movie } = Astro.props;
+const posterUrl = getImageUrl(movie.poster_path);
+const rating = movie.vote_average.toFixed(1);
+const year = movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A';
+---
+
+<div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+  <a href={`/movie/${movie.id}`} class="block">
+    <!-- Movie Poster -->
+    <div class="relative overflow-hidden">
+      <img 
+        src={posterUrl} 
+        alt={movie.title}
+        class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+      
+      <!-- Rating Badge -->
+      <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded-full text-sm font-bold">
+        ⭐ {rating}
+      </div>
+      
+      <!-- Year Badge -->
+      <div class="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-sm font-bold">
+        {year}
+      </div>
+    </div>
+    
+    <!-- Movie Info -->
+    <div class="p-4">
+      <h3 class="text-lg font-semibold text-white mb-2 line-clamp-2 group-hover:text-red-400 transition-colors">
+        {movie.title}
+      </h3>
+      
+      <p class="text-gray-400 text-sm line-clamp-3 mb-3">
+        {movie.overview || 'No overview available'}
+      </p>
+      
+      <!-- Additional Info -->
+      <div class="flex items-center justify-between text-xs text-gray-500">
+        <span class="flex items-center">
+          👥 {movie.vote_count.toLocaleString()} votes
+        </span>
+        <span class="flex items-center">
+          🌟 {movie.popularity.toFixed(0)} popularity
+        </span>
+      </div>
+    </div>
+  </a>
+</div>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style> 

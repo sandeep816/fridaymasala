@@ -1,0 +1,73 @@
+---
+import "../styles/global.css";
+const { title = "Friday Masala - Movie Database" } = Astro.props;
+---
+
+<header class="bg-gray-900 text-white shadow-lg sticky top-0 z-50">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <a href="/" class="text-2xl font-bold text-red-500 hover:text-red-400 transition-colors">
+          🎬 Friday Masala
+        </a>
+        <span class="text-sm text-gray-400 hidden md:block">Your Ultimate Movie Guide</span>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-300 hover:text-white transition-colors">Home</a>
+        <a href="/movies/popular" class="text-gray-300 hover:text-white transition-colors">Popular</a>
+        <a href="/movies/top-rated" class="text-gray-300 hover:text-white transition-colors">Top Rated</a>
+        <a href="/movies/now-playing" class="text-gray-300 hover:text-white transition-colors">Now Playing</a>
+        <a href="/movies/trending" class="text-gray-300 hover:text-white transition-colors">Trending</a>
+        <a href="/celebrities" class="text-gray-300 hover:text-white transition-colors">Celebrities</a>
+      </nav>
+
+      <!-- Search Bar -->
+      <div class="flex items-center space-x-4">
+        <form action="/search" method="GET" class="relative">
+          <input
+            type="text"
+            name="q"
+            placeholder="Search movies..."
+            class="bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 w-64"
+          />
+          <button
+            type="submit"
+            class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+          >
+            🔍
+          </button>
+        </form>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-white" id="mobile-menu-btn">
+        ☰
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden mt-4" id="mobile-menu">
+      <nav class="flex flex-col space-y-4">
+        <a href="/" class="text-gray-300 hover:text-white transition-colors">Home</a>
+        <a href="/movies/popular" class="text-gray-300 hover:text-white transition-colors">Popular</a>
+        <a href="/movies/top-rated" class="text-gray-300 hover:text-white transition-colors">Top Rated</a>
+        <a href="/movies/now-playing" class="text-gray-300 hover:text-white transition-colors">Now Playing</a>
+        <a href="/movies/trending" class="text-gray-300 hover:text-white transition-colors">Trending</a>
+        <a href="/celebrities" class="text-gray-300 hover:text-white transition-colors">Celebrities</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script> 

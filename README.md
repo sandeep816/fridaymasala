@@ -1,70 +1,200 @@
-# Getting Started with Create React App
+# 🎬 Friday Masala - Movie Database
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive movie website built with **Astro** and **Tailwind CSS**, powered by the **TMDB API**. This project is designed to be monetized with Google AdSense for revenue generation.
 
-## Available Scripts
+## ✨ Features
 
-In the project directory, you can run:
+### 🎯 Core Features
+- **Movie Database**: Comprehensive movie information from TMDB API
+- **Search Functionality**: Search movies by title, actor, or genre
+- **Movie Details**: Detailed pages with cast, crew, ratings, and statistics
+- **Responsive Design**: Mobile-first design that works on all devices
+- **SEO Optimized**: Meta tags, Open Graph, and structured data
+- **Fast Performance**: Static site generation with Astro
 
-### `npm start`
+### 📱 Pages & Sections
+- **Homepage**: Featured movies, trending, popular, and top-rated sections
+- **Movie Listings**: Popular, Top Rated, Trending, Now Playing
+- **Movie Details**: Comprehensive movie information with cast and crew
+- **Search**: Advanced search with filters and suggestions
+- **Categories**: Genre-based movie browsing
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 💰 Monetization Ready
+- **Google AdSense Integration**: Pre-configured ad spaces
+- **Strategic Ad Placement**: Header, footer, and content areas
+- **SEO Optimized**: Better search rankings = more traffic = more revenue
+- **Mobile Responsive**: Higher mobile engagement rates
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Quick Start
 
-### `npm test`
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd fridaymasala
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Open your browser**
+   Navigate to `http://localhost:4321`
 
-### `npm run eject`
+## 🛠️ Development
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Available Scripts
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Command | Action |
+|---------|--------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run astro -- --help` | Get Astro CLI help |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Project Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+fridaymasala/
+├── public/                 # Static assets
+├── src/
+│   ├── components/         # Reusable components
+│   │   ├── Header.astro   # Navigation header
+│   │   ├── Footer.astro   # Site footer
+│   │   ├── MovieCard.astro # Movie display card
+│   │   ├── HeroSection.astro # Homepage hero
+│   │   └── AdBanner.astro # AdSense integration
+│   ├── layouts/           # Page layouts
+│   │   └── Layout.astro   # Main layout with ads
+│   ├── lib/               # Utility functions
+│   │   └── tmdb.ts        # TMDB API integration
+│   ├── pages/             # Route pages
+│   │   ├── index.astro    # Homepage
+│   │   ├── search.astro   # Search page
+│   │   ├── movie/[id].astro # Movie details
+│   │   └── movies/        # Movie listing pages
+│   └── styles/            # Global styles
+└── package.json
+```
 
-## Learn More
+## 🎨 Customization
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### TMDB API Configuration
+The API key is configured in `src/lib/tmdb.ts`. To use your own API key:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Get a free API key from [TMDB](https://www.themoviedb.org/settings/api)
+2. Replace the API key in `src/lib/tmdb.ts`
 
-### Code Splitting
+### Styling
+- **Tailwind CSS**: All styling uses Tailwind utility classes
+- **Color Scheme**: Red theme (`red-500`) - easily customizable
+- **Responsive**: Mobile-first design with breakpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### AdSense Integration
+Ad spaces are pre-configured in:
+- `src/components/AdBanner.astro`
+- `src/layouts/Layout.astro`
+- `src/components/Footer.astro`
 
-### Analyzing the Bundle Size
+To activate Google AdSense:
+1. Sign up for Google AdSense
+2. Replace placeholder ad codes with your actual AdSense code
+3. Follow Google's AdSense policies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📈 SEO & Performance
 
-### Making a Progressive Web App
+### SEO Features
+- **Meta Tags**: Dynamic title, description, and Open Graph tags
+- **Structured Data**: Movie schema markup for better search results
+- **Sitemap**: Auto-generated sitemap for search engines
+- **Robots.txt**: Proper crawling instructions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Performance Optimizations
+- **Static Generation**: Pre-built pages for fast loading
+- **Image Optimization**: Lazy loading and responsive images
+- **Minification**: CSS and JS minification in production
+- **CDN Ready**: Easy deployment to CDN services
 
-### Advanced Configuration
+## 🚀 Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Vercel (Recommended)
+```bash
+npm run build
+vercel --prod
+```
 
-### Deployment
+### Netlify
+```bash
+npm run build
+# Deploy dist/ folder
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Other Platforms
+The built site in `dist/` can be deployed to any static hosting service.
 
-### `npm run build` fails to minify
+## 💰 Monetization Strategy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Ad Placement Strategy
+1. **Header Banner**: Above-the-fold visibility
+2. **Content Ads**: Between movie sections
+3. **Sidebar Ads**: On movie detail pages
+4. **Footer Ads**: Bottom of page
+
+### Revenue Optimization
+- **High Traffic Pages**: Homepage and popular movie pages
+- **User Engagement**: Detailed movie pages keep users longer
+- **Mobile Optimization**: Higher mobile ad revenue
+- **SEO Focus**: Better rankings = more organic traffic
+
+## 🔧 Configuration
+
+### Environment Variables
+Create a `.env` file for production:
+```env
+TMDB_API_KEY=your_api_key_here
+```
+
+### AdSense Setup
+1. Replace `ca-pub-EXAMPLE` with your publisher ID
+2. Add your ad unit codes in the AdBanner component
+3. Follow Google's AdSense policies
+
+## 📊 Analytics
+
+### Recommended Analytics
+- **Google Analytics**: Track user behavior
+- **Google Search Console**: Monitor search performance
+- **AdSense Analytics**: Track ad revenue
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🆘 Support
+
+For support or questions:
+- Create an issue on GitHub
+- Check the [Astro documentation](https://docs.astro.build)
+- Review [TMDB API documentation](https://developers.themoviedb.org/)
+
+---
+
+**Made with ❤️ for movie lovers and entrepreneurs**

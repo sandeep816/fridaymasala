@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MovieCard from '../../components/MovieCard.astro';
+import { fetchTopRatedMovies } from '../../lib/tmdb';
+
+const page = parseInt(Astro.url.searchParams.get('page') || '1');
+const movies = await fetchTopRatedMovies();
+---
+
+<Layout title="Top Rated Movies - Friday Masala" description="Explore the highest-rated movies of all time. Discover critically acclaimed films and audience favorites.">
+  <div class="container mx-auto px-4 py-8">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">⭐ Top Rated Movies</h1>
+      <p class="text-gray-600 text-lg">
+        Discover the highest-rated movies that critics and audiences love. From award-winning dramas 
+        to timeless classics, find the best films ever made.
+      </p>
+    </div>
+
+    <!-- Movies Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      {movies.map((movie) => (
+        <MovieCard movie={movie} />
+      ))}
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-12 flex justify-center">
+      <nav class="flex items-center space-x-2">
+        <a 
+          href={`/movies/top-rated?page=${Math.max(1, page - 1)}`}
+          class={`px-4 py-2 rounded-lg ${
+            page <= 1 
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+              : 'bg-red-500 text-white hover:bg-red-600'
+          }`}
+        >
+          ← Previous
+        </a>
+        
+        <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg">
+          Page {page}
+        </span>
+        
+        <a 
+          href={`/movies/top-rated?page=${page + 1}`}
+          class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+        >
+          Next →
+        </a>
+      </nav>
+    </div>
+  </div>
+</Layout> 

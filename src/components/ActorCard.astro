@@ -1,0 +1,47 @@
+---
+import { getImageUrl } from '../lib/tmdb';
+import type { Actor } from '../lib/tmdb';
+
+interface Props {
+  actor: Actor;
+}
+
+const { actor } = Astro.props;
+const profileUrl = getImageUrl(actor.profile_path, 'w185');
+const knownForMovie = actor.known_for[0];
+---
+
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group relative">
+  <a href={`/actor/${actor.id}`} class="block absolute inset-0 z-10" aria-label={`View ${actor.name}'s profile`}>
+    <span class="sr-only">View {actor.name}'s profile</span>
+  </a>
+  
+  <div class="relative">
+    <img 
+      src={profileUrl} 
+      alt={actor.name}
+      class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+      loading="lazy"
+    />
+    <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded-full text-xs font-bold z-20">
+      ⭐ {actor.popularity.toFixed(0)}
+    </div>
+  </div>
+  
+  <div class="p-4">
+    <h3 class="font-semibold text-gray-900 text-lg mb-2 group-hover:text-red-500 transition-colors">
+      {actor.name}
+    </h3>
+    
+    <p class="text-gray-600 text-sm mb-3">
+      {actor.known_for_department}
+    </p>
+    
+    {knownForMovie && (
+      <div class="text-xs text-gray-500">
+        <p class="font-medium">Known for:</p>
+        <p class="truncate">{knownForMovie.title}</p>
+      </div>
+    )}
+  </div>
+</div> 
