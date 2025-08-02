@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
-import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_BSUU8-jN.mjs';
-import { manifest } from './manifest_B4Q87Dct.mjs';
+import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_C3-nqH6_.mjs';
+import { manifest } from './manifest_DLP6yreB.mjs';
 
 const serverIslandMap = new Map();;
 
@@ -17,7 +17,8 @@ const _page9 = () => import('./pages/movies/top-rated.astro.mjs');
 const _page10 = () => import('./pages/movies/trending.astro.mjs');
 const _page11 = () => import('./pages/search.astro.mjs');
 const _page12 = () => import('./pages/sitemap.xml.astro.mjs');
-const _page13 = () => import('./pages/index.astro.mjs');
+const _page13 = () => import('./pages/static-test.astro.mjs');
+const _page14 = () => import('./pages/index.astro.mjs');
 const pageMap = new Map([
     ["node_modules/astro/dist/assets/endpoint/generic.js", _page0],
     ["src/pages/404.astro", _page1],
@@ -32,7 +33,8 @@ const pageMap = new Map([
     ["src/pages/movies/trending.astro", _page10],
     ["src/pages/search.astro", _page11],
     ["src/pages/sitemap.xml.ts", _page12],
-    ["src/pages/index.astro", _page13]
+    ["src/pages/static-test.astro", _page13],
+    ["src/pages/index.astro", _page14]
 ]);
 
 const _manifest = Object.assign(manifest, {
@@ -40,10 +42,10 @@ const _manifest = Object.assign(manifest, {
     serverIslandMap,
     renderers,
     actions: () => import('./_noop-actions.mjs'),
-    middleware: () => import('./_noop-middleware.mjs')
+    middleware: () => import('./_astro-internal_middleware.mjs')
 });
 const _args = {
-    "middlewareSecret": "091a7cbc-528b-4e45-8940-761e68194322",
+    "middlewareSecret": "b0c04760-8686-453e-aed7-0c3ffa862917",
     "skewProtection": false
 };
 const _exports = createExports(_manifest, _args);

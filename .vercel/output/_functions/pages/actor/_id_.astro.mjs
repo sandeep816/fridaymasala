@@ -1,7 +1,7 @@
-import { e as createAstro, f as createComponent, k as renderComponent, r as renderTemplate, h as addAttribute, m as maybeRenderHead } from '../../chunks/astro/server_CGrKawKz.mjs';
+import { e as createAstro, f as createComponent, k as renderComponent, r as renderTemplate, h as addAttribute, m as maybeRenderHead } from '../../chunks/astro/server_CoB5Orc0.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../../chunks/Layout_BGv2XKps.mjs';
-import { f as fetchActorDetails, a as fetchActorCredits, g as getImageUrl } from '../../chunks/tmdb_D_ujDLKT.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_OARH5pAK.mjs';
+import { f as fetchActorDetails, a as fetchActorCredits, g as getImageUrl } from '../../chunks/tmdb_BrssP5EA.mjs';
 export { renderers } from '../../renderers.mjs';
 
 var __freeze = Object.freeze;

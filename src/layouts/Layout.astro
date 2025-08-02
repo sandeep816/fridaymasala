@@ -10,6 +10,13 @@ interface Props {
 }
 
 const { title, description = "Your ultimate destination for movies, reviews, and entertainment. Discover the latest releases, explore classics, and stay updated with the world of cinema.", image = "/og-image.jpg" } = Astro.props;
+
+// Add error handling
+try {
+  console.log('Layout component rendering for:', title);
+} catch (error) {
+  console.error('Layout component error:', error);
+}
 ---
 
 <!DOCTYPE html>

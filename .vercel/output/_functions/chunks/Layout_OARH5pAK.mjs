@@ -1,4 +1,4 @@
-import { e as createAstro, f as createComponent, m as maybeRenderHead, n as renderScript, r as renderTemplate, h as addAttribute, o as renderHead, k as renderComponent, p as renderSlot } from './astro/server_CGrKawKz.mjs';
+import { e as createAstro, f as createComponent, m as maybeRenderHead, o as renderScript, r as renderTemplate, h as addAttribute, n as renderHead, k as renderComponent, p as renderSlot } from './astro/server_CoB5Orc0.mjs';
 import 'kleur/colors';
 import 'clsx';
 /* empty css                        */
@@ -51,6 +51,11 @@ const $$Layout = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Layout;
   const { title, description = "Your ultimate destination for movies, reviews, and entertainment. Discover the latest releases, explore classics, and stay updated with the world of cinema.", image = "/og-image.jpg" } = Astro2.props;
+  try {
+    console.log("Layout component rendering for:", title);
+  } catch (error) {
+    console.error("Layout component error:", error);
+  }
   return renderTemplate`<html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description"${addAttribute(description, "content")}><meta name="generator"${addAttribute(Astro2.generator, "content")}><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url"${addAttribute(Astro2.url, "content")}><meta property="og:title"${addAttribute(title, "content")}><meta property="og:description"${addAttribute(description, "content")}><meta property="og:image"${addAttribute(image, "content")}><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url"${addAttribute(Astro2.url, "content")}><meta property="twitter:title"${addAttribute(title, "content")}><meta property="twitter:description"${addAttribute(description, "content")}><meta property="twitter:image"${addAttribute(image, "content")}><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>${title}</title>${renderHead()}</head> <body class="bg-gray-100 min-h-screen"> ${renderComponent($$result, "Header", $$Header, {})} <!-- Top Ad Banner --> <div class="container mx-auto px-4 py-4"> ${renderComponent($$result, "AdBanner", $$AdBanner, { "position": "top" })} </div> <!-- Main Content --> <main> ${renderSlot($$result, $$slots["default"])} </main> <!-- Bottom Ad Banner --> <div class="container mx-auto px-4 py-4"> ${renderComponent($$result, "AdBanner", $$AdBanner, { "position": "bottom" })} </div> ${renderComponent($$result, "Footer", $$Footer, {})} </body></html>`;
 }, "E:/MyWork/FM/fridaymasala/src/layouts/Layout.astro", void 0);
 

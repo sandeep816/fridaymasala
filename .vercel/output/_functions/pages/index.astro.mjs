@@ -1,10 +1,10 @@
-import { e as createAstro, f as createComponent, m as maybeRenderHead, h as addAttribute, r as renderTemplate, k as renderComponent } from '../chunks/astro/server_CGrKawKz.mjs';
+import { e as createAstro, f as createComponent, m as maybeRenderHead, h as addAttribute, r as renderTemplate, k as renderComponent } from '../chunks/astro/server_CoB5Orc0.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BGv2XKps.mjs';
+import { $ as $$Layout } from '../chunks/Layout_OARH5pAK.mjs';
 import 'clsx';
-import { g as getImageUrl, k as fetchTrendingMovies, i as fetchPopularMovies, j as fetchTopRatedMovies } from '../chunks/tmdb_D_ujDLKT.mjs';
+import { g as getImageUrl, k as fetchTrendingMovies, i as fetchPopularMovies, j as fetchTopRatedMovies } from '../chunks/tmdb_BrssP5EA.mjs';
 /* empty css                                 */
-import { $ as $$MovieCard } from '../chunks/MovieCard_BaOmhgor.mjs';
+import { $ as $$MovieCard } from '../chunks/MovieCard_BLhwAnpT.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Astro = createAstro("https://fridaymasala.com");
@@ -36,15 +36,24 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   let usingFallbackData = false;
   try {
     console.log("Starting to fetch data...");
-    [trendingMovies, popularMovies, topRatedMovies] = await Promise.all([
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error("Data fetch timeout")), 8e3);
+    });
+    const dataPromise = Promise.all([
       fetchTrendingMovies(),
       fetchPopularMovies(),
       fetchTopRatedMovies()
     ]);
+    const result = await Promise.race([
+      dataPromise,
+      timeoutPromise
+    ]);
+    [trendingMovies, popularMovies, topRatedMovies] = result;
     console.log("Data fetched successfully");
   } catch (error) {
     console.warn("Using fallback data due to API issues:", error);
     usingFallbackData = true;
+    error instanceof Error ? error.message : "Unknown error";
     trendingMovies = popularMovies = topRatedMovies = [];
   }
   const featuredMovies = trendingMovies.slice(0, 6);

@@ -1,6 +1,14 @@
 const TMDB_API_KEY = "24d1a324c0773eef7692ac8e0aa3eb02";
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
-const isServerless = typeof process !== "undefined" && (process.env?.VERCEL || process.env?.VERCEL_ENV);
+const isServerless = typeof process !== "undefined" && (process.env?.VERCEL || process.env?.VERCEL_ENV || process.env?.NODE_ENV === "production");
+if (typeof process !== "undefined") {
+  console.log("Environment detection:", {
+    VERCEL: process.env?.VERCEL,
+    VERCEL_ENV: process.env?.VERCEL_ENV,
+    NODE_ENV: process.env?.NODE_ENV,
+    isServerless
+  });
+}
 const sampleMovies = [
   {
     id: 550,

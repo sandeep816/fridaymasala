@@ -9,18 +9,34 @@ let trendingMovies: any[] = [];
 let popularMovies: any[] = [];
 let topRatedMovies: any[] = [];
 let usingFallbackData = false;
+let errorMessage = '';
 
 try {
   console.log('Starting to fetch data...');
-  [trendingMovies, popularMovies, topRatedMovies] = await Promise.all([
+  
+  // Add timeout to prevent hanging
+  const timeoutPromise = new Promise((_, reject) => {
+    setTimeout(() => reject(new Error('Data fetch timeout')), 8000);
+  });
+  
+  const dataPromise = Promise.all([
     fetchTrendingMovies(),
     fetchPopularMovies(),
     fetchTopRatedMovies()
   ]);
+  
+  const result = await Promise.race([
+    dataPromise,
+    timeoutPromise
+  ]) as [any[], any[], any[]];
+  
+  [trendingMovies, popularMovies, topRatedMovies] = result;
+  
   console.log('Data fetched successfully');
 } catch (error) {
   console.warn('Using fallback data due to API issues:', error);
   usingFallbackData = true;
+  errorMessage = error instanceof Error ? error.message : 'Unknown error';
   // Use sample data if all API calls fail
   trendingMovies = popularMovies = topRatedMovies = [];
 }

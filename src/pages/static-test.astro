@@ -1,0 +1,94 @@
+---
+// This is a static page with no server-side processing
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Test - Friday Masala</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .link {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Static Test Page</h1>
+        
+        <div class="success">
+            <strong>✅ Success!</strong> This static page is working correctly.
+        </div>
+        
+        <div class="info">
+            <strong>📋 Information:</strong>
+            <ul>
+                <li>This page is completely static</li>
+                <li>No server-side processing required</li>
+                <li>Should work even if serverless functions are failing</li>
+                <li>Timestamp: <span id="timestamp"></span></li>
+            </ul>
+        </div>
+        
+        <div class="info">
+            <strong>🔗 Test Links:</strong>
+            <ul>
+                <li><a href="/" class="link">Home Page</a></li>
+                <li><a href="/health" class="link">Health Check</a></li>
+                <li><a href="/api/test" class="link">API Test</a></li>
+            </ul>
+        </div>
+        
+        <div class="info">
+            <strong>📝 Next Steps:</strong>
+            <ul>
+                <li>If this page loads, the deployment is working</li>
+                <li>If other pages fail, it's a serverless function issue</li>
+                <li>Check Vercel logs for specific error messages</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        const timestampElement = document.getElementById('timestamp');
+        if (timestampElement) {
+            timestampElement.textContent = new Date().toISOString();
+        }
+    </script>
+</body>
+</html> 
