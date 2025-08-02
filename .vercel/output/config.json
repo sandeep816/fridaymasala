@@ -28,7 +28,15 @@
 			"dest": "_render"
 		},
 		{
+			"src": "^/api/test/?$",
+			"dest": "_render"
+		},
+		{
 			"src": "^/celebrities/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/health/?$",
 			"dest": "_render"
 		},
 		{

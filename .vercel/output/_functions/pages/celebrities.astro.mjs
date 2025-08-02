@@ -1,8 +1,8 @@
 import { e as createAstro, f as createComponent, m as maybeRenderHead, h as addAttribute, r as renderTemplate, k as renderComponent } from '../chunks/astro/server_CGrKawKz.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BRh8Damz.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BGv2XKps.mjs';
 import 'clsx';
-import { g as getImageUrl, b as fetchPopularActors } from '../chunks/tmdb_DNSrHnXo.mjs';
+import { g as getImageUrl, b as fetchPopularActors } from '../chunks/tmdb_D_ujDLKT.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Astro = createAstro("https://fridaymasala.com");

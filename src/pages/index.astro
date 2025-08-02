@@ -11,11 +11,13 @@ let topRatedMovies: any[] = [];
 let usingFallbackData = false;
 
 try {
+  console.log('Starting to fetch data...');
   [trendingMovies, popularMovies, topRatedMovies] = await Promise.all([
     fetchTrendingMovies(),
     fetchPopularMovies(),
     fetchTopRatedMovies()
   ]);
+  console.log('Data fetched successfully');
 } catch (error) {
   console.warn('Using fallback data due to API issues:', error);
   usingFallbackData = true;

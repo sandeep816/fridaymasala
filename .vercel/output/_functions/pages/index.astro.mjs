@@ -1,10 +1,10 @@
 import { e as createAstro, f as createComponent, m as maybeRenderHead, h as addAttribute, r as renderTemplate, k as renderComponent } from '../chunks/astro/server_CGrKawKz.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BRh8Damz.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BGv2XKps.mjs';
 import 'clsx';
-import { g as getImageUrl, k as fetchTrendingMovies, i as fetchPopularMovies, j as fetchTopRatedMovies } from '../chunks/tmdb_DNSrHnXo.mjs';
+import { g as getImageUrl, k as fetchTrendingMovies, i as fetchPopularMovies, j as fetchTopRatedMovies } from '../chunks/tmdb_D_ujDLKT.mjs';
 /* empty css                                 */
-import { $ as $$MovieCard } from '../chunks/MovieCard_Ba23vcAk.mjs';
+import { $ as $$MovieCard } from '../chunks/MovieCard_BaOmhgor.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Astro = createAstro("https://fridaymasala.com");
@@ -35,11 +35,13 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   let topRatedMovies = [];
   let usingFallbackData = false;
   try {
+    console.log("Starting to fetch data...");
     [trendingMovies, popularMovies, topRatedMovies] = await Promise.all([
       fetchTrendingMovies(),
       fetchPopularMovies(),
       fetchTopRatedMovies()
     ]);
+    console.log("Data fetched successfully");
   } catch (error) {
     console.warn("Using fallback data due to API issues:", error);
     usingFallbackData = true;

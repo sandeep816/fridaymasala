@@ -2,7 +2,21 @@ const TMDB_API_KEY = import.meta.env.TMDB_API_KEY || "24d1a324c0773eef7692ac8e0a
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
 // Add debugging for serverless environment
-const isServerless = typeof process !== 'undefined' && process.env?.VERCEL;
+const isServerless = typeof process !== 'undefined' && (
+  process.env?.VERCEL || 
+  process.env?.VERCEL_ENV || 
+  process.env?.NODE_ENV === 'production'
+);
+
+// Log environment for debugging
+if (typeof process !== 'undefined') {
+  console.log('Environment detection:', {
+    VERCEL: process.env?.VERCEL,
+    VERCEL_ENV: process.env?.VERCEL_ENV,
+    NODE_ENV: process.env?.NODE_ENV,
+    isServerless
+  });
+}
 
 export interface Movie {
   id: number;
@@ -324,8 +338,13 @@ export async function fetchTopRatedMovies(): Promise<Movie[]> {
 
 export async function fetchNowPlayingMovies(): Promise<Movie[]> {
   try {
+    if (isServerless) {
+      console.log('Running in serverless environment, using sample data');
+      return sampleMovies;
+    }
+    
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
     
     const response = await fetch(
       `${TMDB_BASE_URL}/movie/now_playing?api_key=${TMDB_API_KEY}`,
@@ -351,8 +370,38 @@ export async function fetchNowPlayingMovies(): Promise<Movie[]> {
 
 export async function fetchMovieDetails(movieId: number): Promise<MovieDetails> {
   try {
+    if (isServerless) {
+      console.log('Running in serverless environment, using sample data');
+      // Return a sample movie details object
+      return {
+        id: movieId,
+        title: "Sample Movie",
+        overview: "This is a sample movie for demonstration purposes.",
+        poster_path: "/placeholder-movie.jpg",
+        backdrop_path: "/placeholder-backdrop.jpg",
+        release_date: "2024-01-01",
+        vote_average: 7.5,
+        vote_count: 1000,
+        genre_ids: [28],
+        adult: false,
+        original_language: "en",
+        original_title: "Sample Movie",
+        popularity: 50.0,
+        video: false,
+        genres: [{ id: 28, name: "Action" }],
+        runtime: 120,
+        status: "Released",
+        budget: 1000000,
+        revenue: 5000000,
+        production_companies: [],
+        spoken_languages: [{ english_name: "English", iso_639_1: "en" }],
+        homepage: "",
+        tagline: "Sample tagline"
+      };
+    }
+    
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
     
     const response = await fetch(
       `${TMDB_BASE_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=credits,videos,images`,
@@ -377,8 +426,33 @@ export async function fetchMovieDetails(movieId: number): Promise<MovieDetails> 
 
 export async function fetchMovieCredits(movieId: number): Promise<MovieCredits> {
   try {
+    if (isServerless) {
+      console.log('Running in serverless environment, using sample data');
+      return {
+        id: movieId,
+        cast: [
+          {
+            id: 1,
+            name: "Sample Actor",
+            character: "Main Character",
+            profile_path: "/placeholder-actor.jpg",
+            order: 0
+          }
+        ],
+        crew: [
+          {
+            id: 2,
+            name: "Sample Director",
+            job: "Director",
+            department: "Directing",
+            profile_path: null
+          }
+        ]
+      };
+    }
+    
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
     
     const response = await fetch(
       `${TMDB_BASE_URL}/movie/${movieId}/credits?api_key=${TMDB_API_KEY}`,
@@ -403,8 +477,20 @@ export async function fetchMovieCredits(movieId: number): Promise<MovieCredits> 
 
 export async function searchMovies(query: string): Promise<SearchResults> {
   try {
+    if (isServerless) {
+      console.log('Running in serverless environment, using sample data');
+      return {
+        page: 1,
+        results: sampleMovies.filter(movie => 
+          movie.title.toLowerCase().includes(query.toLowerCase())
+        ),
+        total_pages: 1,
+        total_results: sampleMovies.length
+      };
+    }
+    
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
     
     const response = await fetch(
       `${TMDB_BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}`,
@@ -434,8 +520,13 @@ export async function searchMovies(query: string): Promise<SearchResults> {
 
 export async function fetchPopularActors(): Promise<Actor[]> {
   try {
+    if (isServerless) {
+      console.log('Running in serverless environment, using sample data');
+      return sampleActors;
+    }
+    
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
     
     const response = await fetch(
       `${TMDB_BASE_URL}/person/popular?api_key=${TMDB_API_KEY}`,
@@ -461,8 +552,26 @@ export async function fetchPopularActors(): Promise<Actor[]> {
 
 export async function fetchActorDetails(actorId: number): Promise<ActorDetails> {
   try {
+    if (isServerless) {
+      console.log('Running in serverless environment, using sample data');
+      return {
+        id: actorId,
+        name: "Sample Actor",
+        biography: "This is a sample actor biography for demonstration purposes.",
+        birthday: "1980-01-01",
+        deathday: null,
+        place_of_birth: "Sample City, Country",
+        profile_path: "/placeholder-actor.jpg",
+        popularity: 50.0,
+        known_for_department: "Acting",
+        gender: 1,
+        homepage: "",
+        imdb_id: "nm0000001"
+      };
+    }
+    
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
     
     const response = await fetch(
       `${TMDB_BASE_URL}/person/${actorId}?api_key=${TMDB_API_KEY}`,
@@ -487,8 +596,26 @@ export async function fetchActorDetails(actorId: number): Promise<ActorDetails> 
 
 export async function fetchActorCredits(actorId: number): Promise<ActorCredits> {
   try {
+    if (isServerless) {
+      console.log('Running in serverless environment, using sample data');
+      return {
+        id: actorId,
+        cast: [
+          {
+            id: 1,
+            title: "Sample Movie",
+            character: "Main Character",
+            poster_path: "/placeholder-movie.jpg",
+            release_date: "2024-01-01",
+            vote_average: 7.5,
+            overview: "This is a sample movie for demonstration purposes."
+          }
+        ]
+      };
+    }
+    
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
     
     const response = await fetch(
       `${TMDB_BASE_URL}/person/${actorId}/movie_credits?api_key=${TMDB_API_KEY}`,
