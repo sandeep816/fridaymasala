@@ -1,4 +1,4 @@
-import { e as createAstro, f as createComponent, m as maybeRenderHead, n as renderScript, r as renderTemplate, h as addAttribute, k as renderComponent, o as renderSlot, p as renderHead } from './astro/server_BalD34Pf.mjs';
+import { e as createAstro, f as createComponent, m as maybeRenderHead, n as renderScript, r as renderTemplate, h as addAttribute, o as renderHead, k as renderComponent, p as renderSlot } from './astro/server_CGrKawKz.mjs';
 import 'kleur/colors';
 import 'clsx';
 /* empty css                        */
@@ -28,10 +28,10 @@ Your ultimate destination for movie information, reviews, and entertainment news
 </p> </div> </div> </footer>`;
 }, "E:/MyWork/FM/fridaymasala/src/components/Footer.astro", void 0);
 
-var __freeze$1 = Object.freeze;
-var __defProp$1 = Object.defineProperty;
-var __template$1 = (cooked, raw) => __freeze$1(__defProp$1(cooked, "raw", { value: __freeze$1(cooked.slice()) }));
-var _a$1;
+var __freeze = Object.freeze;
+var __defProp = Object.defineProperty;
+var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(cooked.slice()) }));
+var _a;
 const $$Astro$1 = createAstro("https://fridaymasala.com");
 const $$AdBanner = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
@@ -43,19 +43,15 @@ const $$AdBanner = createComponent(($$result, $$props, $$slots) => {
     sidebar: "w-full h-60 bg-gray-700 rounded-lg"
   };
   const adClass = adClasses[position];
-  return renderTemplate(_a$1 || (_a$1 = __template$1(["", "<div", '> <div class="text-center"> <div class="mb-1">\u{1F4E2} Advertisement</div> <div class="text-xs text-gray-600">Google AdSense</div> </div> </div> <!-- \n  Google AdSense Code Template:\n  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"\n     crossorigin="anonymous"><\/script>\n  <ins class="adsbygoogle"\n       style="display:block"\n       data-ad-client="ca-pub-YOUR_PUBLISHER_ID"\n       data-ad-slot="YOUR_AD_SLOT"\n       data-ad-format="auto"\n       data-full-width-responsive="true"></ins>\n  <script>\n       (adsbygoogle = window.adsbygoogle || []).push({});\n  <\/script>\n-->'])), maybeRenderHead(), addAttribute(`${adClass} flex items-center justify-center text-gray-500 text-sm`, "class"));
+  return renderTemplate(_a || (_a = __template(["", "<div", '> <div class="text-center"> <div class="mb-1">\u{1F4E2} Advertisement</div> <div class="text-xs text-gray-600">Google AdSense</div> </div> </div> <!-- \n  Google AdSense Code Template:\n  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"\n     crossorigin="anonymous"><\/script>\n  <ins class="adsbygoogle"\n       style="display:block"\n       data-ad-client="ca-pub-YOUR_PUBLISHER_ID"\n       data-ad-slot="YOUR_AD_SLOT"\n       data-ad-format="auto"\n       data-full-width-responsive="true"></ins>\n  <script>\n       (adsbygoogle = window.adsbygoogle || []).push({});\n  <\/script>\n-->'])), maybeRenderHead(), addAttribute(`${adClass} flex items-center justify-center text-gray-500 text-sm`, "class"));
 }, "E:/MyWork/FM/fridaymasala/src/components/AdBanner.astro", void 0);
 
-var __freeze = Object.freeze;
-var __defProp = Object.defineProperty;
-var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(cooked.slice()) }));
-var _a;
 const $$Astro = createAstro("https://fridaymasala.com");
 const $$Layout = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Layout;
   const { title, description = "Your ultimate destination for movies, reviews, and entertainment. Discover the latest releases, explore classics, and stay updated with the world of cinema.", image = "/og-image.jpg" } = Astro2.props;
-  return renderTemplate(_a || (_a = __template(['<html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description"', '><meta name="generator"', '><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url"', '><meta property="og:title"', '><meta property="og:description"', '><meta property="og:image"', '><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url"', '><meta property="twitter:title"', '><meta property="twitter:description"', '><meta property="twitter:image"', '><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>', '</title><!-- Google AdSense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-EXAMPLE" crossorigin="anonymous"><\/script>', '</head> <body class="bg-gray-100 min-h-screen"> ', ' <!-- Top Ad Banner --> <div class="container mx-auto px-4 py-4"> ', " </div> <!-- Main Content --> <main> ", ' </main> <!-- Bottom Ad Banner --> <div class="container mx-auto px-4 py-4"> ', " </div> ", " </body></html>"])), addAttribute(description, "content"), addAttribute(Astro2.generator, "content"), addAttribute(Astro2.url, "content"), addAttribute(title, "content"), addAttribute(description, "content"), addAttribute(image, "content"), addAttribute(Astro2.url, "content"), addAttribute(title, "content"), addAttribute(description, "content"), addAttribute(image, "content"), title, renderHead(), renderComponent($$result, "Header", $$Header, {}), renderComponent($$result, "AdBanner", $$AdBanner, { "position": "top" }), renderSlot($$result, $$slots["default"]), renderComponent($$result, "AdBanner", $$AdBanner, { "position": "bottom" }), renderComponent($$result, "Footer", $$Footer, {}));
+  return renderTemplate`<html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description"${addAttribute(description, "content")}><meta name="generator"${addAttribute(Astro2.generator, "content")}><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url"${addAttribute(Astro2.url, "content")}><meta property="og:title"${addAttribute(title, "content")}><meta property="og:description"${addAttribute(description, "content")}><meta property="og:image"${addAttribute(image, "content")}><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url"${addAttribute(Astro2.url, "content")}><meta property="twitter:title"${addAttribute(title, "content")}><meta property="twitter:description"${addAttribute(description, "content")}><meta property="twitter:image"${addAttribute(image, "content")}><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>${title}</title>${renderHead()}</head> <body class="bg-gray-100 min-h-screen"> ${renderComponent($$result, "Header", $$Header, {})} <!-- Top Ad Banner --> <div class="container mx-auto px-4 py-4"> ${renderComponent($$result, "AdBanner", $$AdBanner, { "position": "top" })} </div> <!-- Main Content --> <main> ${renderSlot($$result, $$slots["default"])} </main> <!-- Bottom Ad Banner --> <div class="container mx-auto px-4 py-4"> ${renderComponent($$result, "AdBanner", $$AdBanner, { "position": "bottom" })} </div> ${renderComponent($$result, "Footer", $$Footer, {})} </body></html>`;
 }, "E:/MyWork/FM/fridaymasala/src/layouts/Layout.astro", void 0);
 
 export { $$Layout as $ };

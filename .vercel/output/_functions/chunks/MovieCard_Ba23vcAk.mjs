@@ -1,7 +1,7 @@
-import { e as createAstro, f as createComponent, m as maybeRenderHead, h as addAttribute, r as renderTemplate } from './astro/server_BalD34Pf.mjs';
+import { e as createAstro, f as createComponent, m as maybeRenderHead, h as addAttribute, r as renderTemplate } from './astro/server_CGrKawKz.mjs';
 import 'kleur/colors';
 import 'clsx';
-import { g as getImageUrl } from './tmdb_CaW--k4M.mjs';
+import { g as getImageUrl } from './tmdb_DNSrHnXo.mjs';
 /* empty css                         */
 
 const $$Astro = createAstro("https://fridaymasala.com");

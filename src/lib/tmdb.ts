@@ -1,5 +1,8 @@
-const TMDB_API_KEY = "24d1a324c0773eef7692ac8e0aa3eb02";
+const TMDB_API_KEY = import.meta.env.TMDB_API_KEY || "24d1a324c0773eef7692ac8e0aa3eb02";
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+
+// Add debugging for serverless environment
+const isServerless = typeof process !== 'undefined' && process.env?.VERCEL;
 
 export interface Movie {
   id: number;
@@ -225,8 +228,13 @@ const sampleActors: Actor[] = [
 
 export async function fetchTrendingMovies(): Promise<Movie[]> {
   try {
+    if (isServerless) {
+      console.log('Running in serverless environment, using sample data');
+      return sampleMovies;
+    }
+    
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // Reduced timeout for serverless
     
     const response = await fetch(
       `${TMDB_BASE_URL}/trending/movie/week?api_key=${TMDB_API_KEY}`,
@@ -252,8 +260,13 @@ export async function fetchTrendingMovies(): Promise<Movie[]> {
 
 export async function fetchPopularMovies(): Promise<Movie[]> {
   try {
+    if (isServerless) {
+      console.log('Running in serverless environment, using sample data');
+      return sampleMovies;
+    }
+    
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
     
     const response = await fetch(
       `${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}`,
@@ -279,8 +292,13 @@ export async function fetchPopularMovies(): Promise<Movie[]> {
 
 export async function fetchTopRatedMovies(): Promise<Movie[]> {
   try {
+    if (isServerless) {
+      console.log('Running in serverless environment, using sample data');
+      return sampleMovies;
+    }
+    
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
     
     const response = await fetch(
       `${TMDB_BASE_URL}/movie/top_rated?api_key=${TMDB_API_KEY}`,

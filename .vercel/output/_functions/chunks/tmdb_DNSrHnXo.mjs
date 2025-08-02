@@ -1,5 +1,6 @@
 const TMDB_API_KEY = "24d1a324c0773eef7692ac8e0aa3eb02";
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+const isServerless = typeof process !== "undefined" && process.env?.VERCEL;
 const sampleMovies = [
   {
     id: 550,
@@ -129,8 +130,12 @@ const sampleActors = [
 ];
 async function fetchTrendingMovies() {
   try {
+    if (isServerless) {
+      console.log("Running in serverless environment, using sample data");
+      return sampleMovies;
+    }
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 1e4);
+    const timeoutId = setTimeout(() => controller.abort(), 5e3);
     const response = await fetch(
       `${TMDB_BASE_URL}/trending/movie/week?api_key=${TMDB_API_KEY}`,
       {
@@ -152,8 +157,12 @@ async function fetchTrendingMovies() {
 }
 async function fetchPopularMovies() {
   try {
+    if (isServerless) {
+      console.log("Running in serverless environment, using sample data");
+      return sampleMovies;
+    }
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 1e4);
+    const timeoutId = setTimeout(() => controller.abort(), 5e3);
     const response = await fetch(
       `${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}`,
       {
@@ -175,8 +184,12 @@ async function fetchPopularMovies() {
 }
 async function fetchTopRatedMovies() {
   try {
+    if (isServerless) {
+      console.log("Running in serverless environment, using sample data");
+      return sampleMovies;
+    }
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 1e4);
+    const timeoutId = setTimeout(() => controller.abort(), 5e3);
     const response = await fetch(
       `${TMDB_BASE_URL}/movie/top_rated?api_key=${TMDB_API_KEY}`,
       {
