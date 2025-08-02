@@ -3,9 +3,6 @@ import Layout from '../../layouts/Layout.astro';
 import { fetchActorDetails, fetchActorCredits, getImageUrl } from '../../lib/tmdb';
 import type { ActorDetails, ActorCredits } from '../../lib/tmdb';
 
-// Enable server-side rendering for dynamic routes
-export const prerender = false;
-
 const { id } = Astro.params;
 const actorId = parseInt(id as string);
 

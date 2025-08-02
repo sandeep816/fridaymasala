@@ -3,9 +3,6 @@ import Layout from '../../layouts/Layout.astro';
 import { fetchMovieDetails, fetchMovieCredits, getImageUrl, getBackdropUrl } from '../../lib/tmdb';
 import type { MovieDetails, MovieCredits } from '../../lib/tmdb';
 
-// Enable server-side rendering for dynamic routes
-export const prerender = false;
-
 const { id } = Astro.params;
 const movieId = parseInt(id as string);
 
